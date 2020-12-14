@@ -109,96 +109,20 @@ void changeNumberIndicationState(int value, int maxValue) {
  * Decodes number to the pins' mode
  */
 void setNumber(int number) {
+  int ledBar = B0000000;
   switch(number) {
-    case 0: // Number is 0
-      digitalWrite(FIRST_PIN + 0, HIGH);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, LOW);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 1: // Number is 1
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, LOW);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, LOW);
-      digitalWrite(FIRST_PIN + 4, LOW);
-      digitalWrite(FIRST_PIN + 5, LOW);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 2: // Number is 2
-      digitalWrite(FIRST_PIN + 0, HIGH);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, LOW);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, LOW);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 3: // Number is 3
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, LOW);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 4: // Number is 4
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, LOW);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, LOW);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 5: // Number is 5
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, LOW);
-      break;
-    case 6: // Number is 6
-      digitalWrite(FIRST_PIN + 0, HIGH);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, LOW);
-      break;
-    case 7: // Number is 7
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, LOW);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, LOW);
-      digitalWrite(FIRST_PIN + 4, LOW);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 8: // Number is 8
-      digitalWrite(FIRST_PIN + 0, HIGH);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
-    case 9: // Number is 9
-      digitalWrite(FIRST_PIN + 0, LOW);
-      digitalWrite(FIRST_PIN + 1, HIGH);
-      digitalWrite(FIRST_PIN + 2, HIGH);
-      digitalWrite(FIRST_PIN + 3, HIGH);
-      digitalWrite(FIRST_PIN + 4, HIGH);
-      digitalWrite(FIRST_PIN + 5, HIGH);
-      digitalWrite(FIRST_PIN + 6, HIGH);
-      break;
+    case 0: ledBar = B1110111; break; // Number is 0
+    case 1: ledBar = B1000100; break; // Number is 1
+    case 2: ledBar = B1101011; break; // Number is 2
+    case 3: ledBar = B1101110; break; // Number is 3
+    case 4: ledBar = B1011100; break; // Number is 4
+    case 5: ledBar = B0111110; break; // Number is 5
+    case 6: ledBar = B0111111; break; // Number is 6
+    case 7: ledBar = B1100100; break; // Number is 7
+    case 8: ledBar = B1111111; break; // Number is 8
+    case 9: ledBar = B1111110; break; // Number is 9
+  }
+  for (int i = 0; i < 8; i++) {
+    digitalWrite(FIRST_PIN + i, bitRead(ledBar, i));
   }
 }
