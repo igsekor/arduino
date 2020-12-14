@@ -8,10 +8,10 @@ The aim of the project is to learn to use an analog-digital conversion on Analog
 1. Red LED (3 pieces);
 2. Yellow LED (3 pieces);
 3. Green LED (3 pieces);
-4. Single digit numeric display (1 piece);
+4. Single digit numeric display [SC52-11GWA](https://github.com/igsekor/arduino/blob/main/AnalogReadSerialAndLedBar/SC52-11GWA-Datasheet.pdf) (1 piece);
 5. 2.2 kOhm resistors (9 pieces);
 7. Сlock button (1 piece);
-8. Зotentiometer (1 piece);
+8. Potentiometer (1 piece);
 9. Arduino Uno (1 piece);
 10. Breadboard (1 piece).
 
