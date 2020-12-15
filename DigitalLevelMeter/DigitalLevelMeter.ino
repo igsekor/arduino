@@ -1,5 +1,5 @@
 /*
- * AnalogReadSerialAndLedBar
+ * DigitalLevelMeter
  *
  * Read analog signal from A0 and show the level
  * of it on numberic or led-line indicator
