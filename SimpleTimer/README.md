@@ -8,5 +8,5 @@ The aim of the project is to create a timer with indication by 4 7-sigment digit
 1. Single digit numeric display [SC52-11GWA](https://github.com/igsekor/arduino/blob/main/DigitalLevelMeter/SC52-11GWA-Datasheet.pdf) (4 piece).
 
 ## Files:
-1. [Sketch](https://github.com/igsekor/arduino/blob/main/SimpleTimer/SimpleTimer.ino));
+1. [Sketch](https://github.com/igsekor/arduino/blob/main/SimpleTimer/SimpleTimer.ino);
 2. [Electric Scheme](https://crcit.net/c/ab1cf6d8d23c4fae8e693154d5687007).
