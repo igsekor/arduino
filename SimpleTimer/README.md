@@ -5,7 +5,7 @@ The aim of the project is to create a timer with indication by 4 7-sigment digit
 ![Project "SimpleTimer"](https://github.com/igsekor/arduino/blob/main/SimpleTimer/SimpleTimer.jpg)
 
 ## List of components:
-1. Single digit numeric display [SC52-11GWA](https://github.com/igsekor/arduino/blob/main/DigitalLevelMeter/SC52-11GWA-Datasheet.pdf) (4 piece) is .
+1. Single digit numeric display [SC52-11GWA](https://github.com/igsekor/arduino/blob/main/DigitalLevelMeter/SC52-11GWA-Datasheet.pdf) (4 piece).
 
 ## Files:
 1. [Sketch](https://github.com/igsekor/arduino/blob/main/SimpleTimer/SimpleTimer.ino));
