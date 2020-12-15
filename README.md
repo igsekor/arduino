@@ -1,4 +1,4 @@
-# Arduino Studing Projects
+# Arduino Projects
 
 Experiments with Arduino platform
 
