@@ -28,11 +28,11 @@ void setup() {
  * Main cycle
  */
 void loop() {
-  if (tick()) {
+  if (tick(DELAY)) {
     int sensorValue = analogRead(A0);
     switch(mode) {
       case SCALE_LED:
-        changeScaleIndicationState(sensorValue, MAX_VALUE, RANGE_COUNT);
+        changeScaleIndicationState(sensorValue, MAX_VALUE, RANGE_COUNT, FIRST_PIN);
         break;
       case NUMBR_LED:
         changeNumberIndicationState(sensorValue, MAX_VALUE);
@@ -44,9 +44,9 @@ void loop() {
 /*
  * Returns true value each period (due to DELAY constant)
  */
-bool tick() {
+bool tick(int t) {
   int currentTime = millis();
-  if (currentTime - DELAY >= lastTime) {
+  if (currentTime - t >= lastTime) {
     lastTime = currentTime;
     return true;
   }
@@ -57,7 +57,7 @@ bool tick() {
  * Initialization of all ports
  */
 void initPins(int count, int firstPin) {
-  pinMode(FIRST_PIN - 1, INPUT_PULLUP);
+  pinMode(firstPin - 1, INPUT_PULLUP);
   for (int i = 0; i < count; i++) {
     pinMode(firstPin + i, OUTPUT);
     digitalWrite(i, LOW);
@@ -73,19 +73,20 @@ void changeMode() {
   } else {
     mode = SCALE_LED;
   }
+  Serial.print("Mode: ");
   Serial.println(mode);
 }
 
 /*
  * Changes the showing value as a scale (due to maximum RANGE_COUNT)
  */
-void changeScaleIndicationState(int value, int maxValue, int rangeCount) {
+void changeScaleIndicationState(int value, int maxValue, int rangeCount, int firstPin) {
   float dv = (float) maxValue / (float) rangeCount;
   for (int i = 0; i < rangeCount; i++) {
     if ((float) value >= dv * (float) i) {
-      digitalWrite(FIRST_PIN + i, HIGH);
+      digitalWrite(firstPin + i, HIGH);
     } else {
-      digitalWrite(FIRST_PIN + i, LOW);
+      digitalWrite(firstPin + i, LOW);
     }
   }
   Serial.println(value * 5.0 / maxValue);
@@ -95,11 +96,11 @@ void changeScaleIndicationState(int value, int maxValue, int rangeCount) {
  * Changes the showing value as a number (from 0 to 9)
  */
 void changeNumberIndicationState(int value, int maxValue) {
-  int NUMBER_MAX = 10;
+  const int NUMBER_MAX = 10;
   float dv = (float) maxValue / (float) NUMBER_MAX;
   for (int i = 0; i < NUMBER_MAX; i++) {
     if ((float) value >= dv * (float) i) {
-      setNumber(i);
+      setNumber(i, FIRST_PIN);
     }
   }
   Serial.println(value * 5.0 / maxValue);
@@ -108,7 +109,7 @@ void changeNumberIndicationState(int value, int maxValue) {
 /*
  * Decodes number to the pins' mode
  */
-void setNumber(int number) {
+void setNumber(int number, int firstPin) {
   int ledBar = B0000000;
   switch(number) {
     case 0: ledBar = B1110111; break; // Number is 0
@@ -123,6 +124,6 @@ void setNumber(int number) {
     case 9: ledBar = B1111110; break; // Number is 9
   }
   for (int i = 0; i < 8; i++) {
-    digitalWrite(FIRST_PIN + i, bitRead(ledBar, i));
+    digitalWrite(firstPin + i, bitRead(ledBar, i));
   }
 }
